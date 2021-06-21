@@ -3,17 +3,17 @@
 [![Join the chat at https://gitter.im/BinaryCumates/T-Picker-Frontend](https://badges.gitter.im/BinaryCumates/T-Picker-Frontend.svg)](https://gitter.im/BinaryCumates/T-Picker-Frontend?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-## installation:-
+## Installation:-
 ### Steps
 *  fork the repository
 * `git clone <repository-url>` this repository.
 * `cd T-Picker-Frontend`
 
-## install dependencies
+##install dependencies
 ```
 npm install
 ```
-### run the development server
+### Run The Development Server
 
 Running:
 -   `npm start`
