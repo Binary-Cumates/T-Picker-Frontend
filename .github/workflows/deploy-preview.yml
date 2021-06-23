@@ -1,0 +1,24 @@
+name: deploy website
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Install dependencies
+        run: yarn
+      - uses: actions/vercel-deployment@0.5.1
+        with:
+          vercelToken: ${{ secrets.VERCEL_TOKEN }}
+          vercelOrgId: ${{ secrets.VERCEL_ORG_ID }}
+          vercelProjectId: ${{ secrets.VERCEL_PROJECT_ID }}
+          githubToken: ${{ secrets.PAT }}
+          sourceDirectory: "src"
+          assignDomain: "preview.example.com"
+        env:
+          YOUR_ENV_1: ${{ secrets.YOUR_ENV_1 }}
+          YOUR_ENV_2: ${{ secrets.YOUR_ENV_2 }}
