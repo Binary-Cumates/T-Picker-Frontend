@@ -19,7 +19,7 @@ npm install
 
 Running:
 -   `npm start`
--   Visit your app at [http://localhost:3000](http://localhost:3000).
+-   Visit your app in local system [http://localhost:3000](http://localhost:3000).
 
 
 ## License
