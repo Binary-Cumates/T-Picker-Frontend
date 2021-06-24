@@ -18,3 +18,24 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+        
+    # in each pull request to master, compare current code coverage
+      # against the code coverage badge in README file
+      # Tip: if you really want to change code coverage
+      # you can edit that badge ...
+    - name: Set code coverage commit status 📫
+        # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
+      if: github.event_name == 'pull_request' && github.base_ref == 'master'
+      run: npx set-gh-status --check-against-readme
+      env:
+          # show debug logs from "set-gh-status" script
+          DEBUG: check-code-coverage
+          # set the SHA of the _merged_ commit so the status check goes to PR
+          GH_SHA: ${{ github.event.after }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # if running on master branch, update the README code coverage badge
+    - name: Update code coverage badge 🥇
+        # https://help.github.com/en/actions/reference/events-that-trigger-workflows#push-event-push
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      run: npx update-badge
