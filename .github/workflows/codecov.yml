@@ -1,0 +1,36 @@
+name: Workflow for Codecov Action
+on: [push, pull_request]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint
+      - name: Run tests and collect coverage
+        run: yarn run test
+      - name: Upload coverage to Codecov (demo)
+        uses: ./
+        with:
+          files: ./coverage/calculator/coverage-final.json,./coverage/coverage-test/coverage-final.json
+          file: ./coverage/coverage-final.json
+          flags: demo
+          name: codecov-demo
+      - name: Upload coverage to Codecov (script)
+        uses: ./
+        with:
+          files: ./coverage/script/coverage-final.json
+          flags: script
+          name: codecov-script
+        - uses: actions/checkout@master
+        - uses: codecov/codecov-action@v1
+          with:
+            token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+            files: ./coverage1.xml,./coverage2.xml # optional
+            flags: unittests # optional
+            name: codecov-umbrella # optional
+            fail_ci_if_error: true # optional (default = false)
+            verbose: true # optional (default = false)  
