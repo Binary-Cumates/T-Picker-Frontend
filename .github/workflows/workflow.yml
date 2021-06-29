@@ -1,0 +1,30 @@
+name: Workflow for Codecov Action
+on: [push, pull_request]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests and collect coverage
+        run: yarn run test
+      steps:
+      steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Install
+        run: npm install
+      -
+        name: Test
+        run: npm run test
+      -
+        name: Upload coverage
+        uses: codecov/codecov-action@v1
+        if: success()
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/clover.xml
