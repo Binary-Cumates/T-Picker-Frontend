@@ -1,0 +1,12 @@
+✅ javascript:
+  - "**/*.js"
+  - "*.js"
+📝 documentation:
+  - "**/*.md"
+  - "*.md"
+
+🐳 docker:
+  - "Dockerfile"
+
+⚙ ci:
+  - ".github/**"
