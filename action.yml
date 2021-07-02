@@ -1,0 +1,11 @@
+name: 'Labeler'
+description: 'Automatically label new pull requests based on the paths of files being changed'
+author: 'GitHub'
+inputs:
+  configuration-path:
+    description: 'The path for the label configurations'
+    default: '.github/labeler.yml'
+    required: false
+  
+runs:
+  using: 'node14'
