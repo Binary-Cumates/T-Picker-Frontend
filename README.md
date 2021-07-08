@@ -17,7 +17,7 @@ npm install
 ```
 ### Run The Development Server
 
-Running:
+Running:-
 -   `npm start`
 -   Visit your app in local system [http://localhost:3000](http://localhost:3000).
 
